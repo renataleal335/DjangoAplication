@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <h1>Pessoas Cadastradas</h1>
+    <ul>
+    {% for person in persons_list %}
+        <li>{{ person.nome}} </li>
+        <li>  
+            <a href="{% url 'signup:person_delete' person.id %}"> {% csrf_token %}
+                <input type="submit" value='Deletar Cadastro'>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'signup:person_update' person.id %}"> {% csrf_token %}
+                <input type="submit" value='Editar'>
+            </a>
+        </li>
+          
+    {% endfor %}
+    </ul>
+
+    
+    
+</html>
