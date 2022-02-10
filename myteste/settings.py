@@ -11,24 +11,26 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 from ctypes import cast
+from distutils.debug import DEBUG
 from email.policy import default
 import os
 import django_on_heroku
-from decouple import config 
+#from decouple import config
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
+# Quick-start development settings - unsuitable for produtoion
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key used in produtoion secret!
 SECRET_KEY = '$hkl&05#+b3crh!%@1$x&jiz7zfjrm82yl+f*it1e=hur59+v-'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool , default=False)
+# SECURITY WARNING: don't run with debug turned on in produtoion!
+#DEBUG = config('DEBUG', cast=bool , default=False)
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -83,7 +85,7 @@ WSGI_APPLICATION = 'myteste.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'bancoteste',
+        'NAME': 'banco-de-dados',
        
 
     }

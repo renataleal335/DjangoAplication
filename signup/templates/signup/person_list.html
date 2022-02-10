@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-    <h1>Pessoas Cadastradas</h1>
+    <h1>Persons Cadastradas</h1>
     <ul>
-    {% for person in persons_list %}
-        <li>{{ person.nome}} </li>
+    {% for person in persons_list%}
+        <li>{{ person.name}} </li>
         <li>  
             <a href="{% url 'signup:person_delete' person.id %}"> {% csrf_token %}
                 <input type="submit" value='Deletar Cadastro'>

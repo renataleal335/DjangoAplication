@@ -3,7 +3,7 @@
     <h1>Produtos Cadastrados</h1>
     <ul>
     {% for product in product_list%}
-        <li>{{ product.nome}} </li>
+        <li>{{ product.name}} </li>
         <li>  
             <a href="{% url 'signup:product_delete' product.id %}"> {% csrf_token %}
                 <input type="submit" value='Deletar Cadastro'>
