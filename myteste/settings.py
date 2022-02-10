@@ -10,8 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+from ctypes import cast
+from email.policy import default
 import os
 import django_on_heroku
+from decouple import config 
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$hkl&05#+b3crh!%@1$x&jiz7zfjrm82yl+f*it1e=hur59+v-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool , default=False)
 
 ALLOWED_HOSTS = []
 
