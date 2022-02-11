@@ -1,0 +1,27 @@
+{% extends 'signup/base.html' %}
+
+<!DOCTYPE html>
+<html>
+    {% block title %} Pessoas Cadastradas{% endblock %}
+    {% block content %}
+      <h1 class+"mt-3"> Pessoas Cadastradas </h1>
+    <ul class="list-group">
+    {% for person in persons_list%}
+        <li class="list-group-item">
+            {{ person.name}} 
+            <a href="{% url 'signup:person_update' person.id %}"> {% csrf_token %}
+                <input class="btn btn-info ml-1"  type="submit" value='Editar'>
+            </a>
+            <a href="{% url 'signup:person_delete' person.id %}"> {% csrf_token %}
+                <input class="btn btn-danger ml-1"  type="submit" value='Deletar Cadastro'>
+            </a>
+        </li>
+      
+          
+    {% endfor %}
+    </ul>
+    {% endblock %}
+
+    
+    
+</html>

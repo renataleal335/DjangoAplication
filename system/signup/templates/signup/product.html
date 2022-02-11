@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load bootstrap %}
+<!DOCTYPE html>
+<html>
+    {% block title %}Cadastro Produtos{% endblock %}
+<body>
+    {% block content %}
+    <h1> Cadastro de Produtos </h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form|bootstrap}}
+        <input class="btn btn-info mb-2"  type="submit" value="Submit">
+    </form>
+    {% endblock %}
+</body>
+   
+</html>

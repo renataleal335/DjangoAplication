@@ -1,0 +1,27 @@
+
+{% extends 'signup/base.html' %}
+<!DOCTYPE html>
+<html>
+    <body class="section">
+    {% block title %} Produtos{% endblock %}
+    {% block content %}
+   <h1> Lista de Produtos </h1>
+    <div class="container">
+    <ul class"list-group">
+    {% for product in product_list%}
+        <li class="list-group-item">
+            {{ product.name}}
+            <a href="{% url 'signup:product_update' product.id %}"> {% csrf_token %}
+                <input class="btn btn-info ml-1"  type="submit" value='Editar'>
+            </a>
+            <a href="{% url 'signup:product_delete' product.id %}"> {% csrf_token %}
+                <input class="btn btn-danger ml-1" type="submit" value='Deletar Cadastro'>
+            </a>
+          
+    {% endfor %}
+    </ul>
+    </div>
+    {% endblock %}
+
+</body>
+</html>

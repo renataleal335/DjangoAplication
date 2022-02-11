@@ -1,0 +1,27 @@
+{% extends 'signup/base.html' %}
+<!DOCTYPE html>
+<html>
+    <body>
+        {% block content %}
+    <h1>Suas Compras</h1>
+    <ul class="list-group">
+    {% for sale in sales_list%}
+        <li class="list-group-item">
+            {{ sale.date_sale}} 
+            <a href="{% url 'signup:sale_delete' sale.id %}"> {% csrf_token %}
+                <input class="btn btn-danger ml-1" type="submit" value='Deletar Compra'>
+            </a>
+            <a href="{% url 'signup:sale_update' sale.id %}"> {% csrf_token %}
+                <input class="btn btn-info ml-1" type="submit" value='Editar Compra'>
+            </a>
+        </li>
+       
+        
+          
+    {% endfor %}
+    </ul>
+    {% endblock %}
+
+</body>   
+    
+</html>
