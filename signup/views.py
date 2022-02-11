@@ -27,16 +27,22 @@ def sales(request):
     if request.method == 'POST':
         form = SalesForm(request.POST)
         formset = ItemSaleFormSet(request.POST, request.FILES)
-        if form.is_valid() and formset.is_valid():
-            form.save()
-            formset.save()
-            return redirect('signup:sales_list')
-
+        if form.is_valid():
+            sales = form.save(commit=False)
+           
+        if formset.is_valid():
+            for itemFormSet in formset:
+                if itemFormSet.cleaned_data.get('DELETE') and itemFormSet.instance.pk:
+                    itemFormSet.instance.delete()
+                else:
+                    instance = itemFormSet.save(commit=False)
+                    instance.sales = sales
+                    instance.save()
+        return redirect('signup:sales_list')
     else:
         form = SalesForm()
         formset = ItemSaleFormSet()
-
-    return render(request, "signup/sales.html", {'form': form, 'formset' : formset})
+    return render(request, "signup/sales.html", {'form': form, 'formset': formset})
 
 
 def product(request):
