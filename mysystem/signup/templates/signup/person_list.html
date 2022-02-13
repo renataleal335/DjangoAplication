@@ -1,0 +1,37 @@
+{% extends 'signup/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <body>
+    {% block title %} Registered people  {% endblock %}
+    {% block content %}
+    <div class="container mt-4">
+        <h2> Registered people </h2>
+  
+    <ul class="list-group list-group-flush mt-4">
+    {% for person in persons_list%}
+        <li class="list-group-item d-flex align-items-center">
+            {{ person.name}} 
+            <a href="{% url 'signup:person_update' person.id %}"> {% csrf_token %}
+                <input class="btn btn-info ml-1"  type="submit" value='Edit'>
+            </a>
+            <a href="{% url 'signup:person_delete' person.id %}"> {% csrf_token %}
+                <input class="btn btn-danger ml-1"  type="submit" value='Delete'>
+            </a>
+        </li>
+      
+          
+    {% endfor %}
+    </ul>
+    <a class="btn btn-secondary float-right mt-2" href="{% url 'signup:create_person'%}"role="button">Come back</a>
+   
+    
+    </div>
+ 
+    {% endblock %}
+</body>
+
+    
+    
+</html>

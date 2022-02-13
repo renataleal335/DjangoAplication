@@ -1,0 +1,25 @@
+{% extends 'create_person.html' %}
+{% load bootstrap %}
+<!DOCTYPE html>
+<html>
+    {% block title %} Register sale{% endblock %}
+    <body>
+         {% block content %}
+         <h1 class="mb-4"> Register sale </h1>
+         <form action="" method="post">
+             {% csrf_token %}
+             {{ form|bootstrap}}
+             <div class="mt-4">
+                 <p class="p"> Register item </p>
+             {{ formset.management_form|bootstrap}}
+             </div>
+             <table>
+                 {{ formset }}
+             </table>
+             <input class="btn btn-info mb-2 float-right" type="submit" value="Submit">
+         </form>
+         {% endblock %}
+    </body>
+  
+   
+</html>

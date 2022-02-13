@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {% block content %}
+        <div>
+            <h1>Editar Compra - {{sale.date_sale}}</h1>
+            <div>
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {{ formset.management_form }}
+                    <table>
+                        {{ formset }}
+                    </table>
+                    <input type="submit" value="Salvar">
+                </form>
+            
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,22 @@
+{% extends 'signup/edit_person.html' %}
+{% load bootstrap %}
+
+<!DOCTYPE html>
+<html>
+    <body>
+        {% block content %}
+        <div class="container">
+            <h1 class="mt-2">Editar cadastro do produto: '{{product.name}}'</h1>
+            <div>
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    {{ form|bootstrap}}
+                    <input class="btn btn-info mb-2"  type="submit" value="Salvar">
+                    <button class="btn btn-secondary mb-2" href="{% url 'signup:product_list'%}"  value="Voltar">Voltar</button>
+                </form>
+            
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>

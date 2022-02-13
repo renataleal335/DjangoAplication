@@ -1,0 +1,32 @@
+h1,
+p,
+h2 {
+    color: #95C0C9 !important;
+}
+
+.sub-title {
+    color: #95C0C9;
+}
+
+.container h1 {
+    color: #95C0C9;
+}
+
+.home-dashboard {}
+
+.card-dash {
+    border-radius: 5px;
+    background: #95C0C9;
+    height: 100px;
+}
+
+.login-form {
+    background: #F5F6F8;
+    border: 1px solid #DEDEDE;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.08);
+    position: absolute;
+    width: 400px;
+    height: 470px;
+    padding: 10px;
+}

@@ -1,0 +1,36 @@
+{% extends 'signup/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <body>
+    {% block title %} Registered product  {% endblock %}
+    {% block content %}
+    <div class="container mt-4">
+        <h2> Registered product </h2>
+  
+    <ul class="list-group list-group-flush mt-4">
+    {% for product in product_list%}
+        <li class="list-group-item d-flex align-items-center">
+            {{ product.name}} 
+            <a href="{% url 'signup:product_update' product.id %}"> {% csrf_token %}
+                <input class="btn btn-info ml-1"  type="submit" value='Edit'>
+            </a>
+            <a href="{% url 'signup:product_delete' product.id %}"> {% csrf_token %}
+                <input class="btn btn-danger ml-1"  type="submit" value='Delete'>
+            </a>
+        </li>
+      
+          
+    {% endfor %}
+    </ul>
+    <a class="btn btn-secondary float-right mt-2" href="{% url 'signup:product'%}"role="button">Come back</a>
+    
+    </div>
+ 
+    {% endblock %}
+</body>
+
+    
+    
+</html>
