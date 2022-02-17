@@ -34,6 +34,8 @@ class Sale (models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     date_sale = models.DateField(default=datetime.today)
     total = models.DecimalField(max_digits=5, decimal_places=2)
+    def __str__(self):
+        return self.person.name
 
 
 class SaleItem (models.Model):

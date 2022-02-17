@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'create_person.html' %}
+
 {% load  static %}
 {% load bootstrap %}
 <html lang="en">
@@ -18,9 +18,9 @@
             {{form|bootstrap}}
         </div>
         {{formset.management_form}}
-        {% for form in formset %}
+        {% for formItem in formset %}
         <div class="item-form mt-2">
-        {{form}}
+        {{formItem}}
         </div>
         {% endfor %}
       
