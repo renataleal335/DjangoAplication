@@ -1,25 +1,53 @@
-{% extends 'create_person.html' %}
-{% load bootstrap %}
 <!DOCTYPE html>
-<html>
-    {% block title %} Register sale{% endblock %}
-    <body>
-         {% block content %}
-         <h1 class="mb-4"> Register sale </h1>
-         <form action="" method="post">
-             {% csrf_token %}
-             {{ form|bootstrap}}
-             <div class="mt-4">
-                 <p class="p"> Register item </p>
-             {{ formset.management_form|bootstrap}}
-             </div>
-             <table>
-                 {{ formset }}
-             </table>
-             <input class="btn btn-info mb-2 float-right" type="submit" value="Submit">
-         </form>
-         {% endblock %}
+{% load  static %}
+{% load bootstrap %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>Add Sale</title>
+    </head>
+
+<body class="container mb-4">
+    <h1>Add item</h1>
+    <form id="form-container" method="POST">
+        {% csrf_token %}
+        <div class="mb-4">
+            {{form|bootstrap}}
+        </div>
+        {{formset.management_form}}
+        {% for form in formset %}
+        <div class="item-form mt-2">
+        {{form}}
+        </div>
+        {% endfor %}
+      
+        <button id="add-form" type="button">Add more items</button>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        let formItem = document.querySelectorAll(".item-form")
+        let container = document.querySelector("#form-container")
+        let addButton = document.querySelector("#add-form")
+        let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+        
+        let formNum = formItem.length - 1
+        addButton.addEventListener('click', addForm)
+        
+        function addForm(e) {
+            e.preventDefault()
+            let newForm = formItem[0].cloneNode(true)
+            let formRegex = RegExp(`form-(\\d){1}-`,'g')
+
+            formNum++
+            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+            container.insertBefore(newForm, addButton)
+            
+            totalForms.setAttribute('value', `${formNum+1}`)
+        }
+    </script>
+    
     </body>
-  
-   
 </html>

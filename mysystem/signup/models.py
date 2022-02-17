@@ -13,7 +13,7 @@ class Person(models.Model):
     address = models.CharField(max_length=255, null=False)
     city = models.CharField(max_length=255, null=False)
     uf = models.CharField(max_length=2, null=False)
-    cep = models.FloatField()
+    cep = models.IntegerField()
     sex = models.CharField(max_length=1, choices=SEX_CHOICES)
     birth_date = models.CharField(max_length=100, null=False)
 
@@ -24,22 +24,22 @@ class Person(models.Model):
 class Product (models.Model):
     name = models.CharField(max_length=255, null=False)
     value = models.DecimalField(max_digits=5, decimal_places=2)
-    quantity_products = models.FloatField()
+    quantity_products = models.IntegerField()
 
     def __str__(self):
         return self.name
 
 
-class Sales (models.Model):
+class Sale (models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     date_sale = models.DateField(default=datetime.today)
-    total = models.FloatField()
+    total = models.DecimalField(max_digits=5, decimal_places=2)
 
 
 class SaleItem (models.Model):
-    product = models.CharField(max_length=255, null=False)
-    quantity = models.FloatField()
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    sale = models.ForeignKey(Sale, on_delete=models.CASCADE, blank=True)
+    quantity = models.IntegerField()
     value_product = models.DecimalField(max_digits=5, decimal_places=2)
-
     def __str__(self):
-        return self.product
+        return self.product.name

@@ -10,7 +10,7 @@
         <h2> Registered product </h2>
   
     <ul class="list-group list-group-flush mt-4">
-    {% for product in product_list%}
+    {% for product in object_list%}
         <li class="list-group-item d-flex align-items-center">
             {{ product.name}} 
             <a href="{% url 'signup:product_update' product.id %}"> {% csrf_token %}

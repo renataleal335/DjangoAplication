@@ -7,7 +7,7 @@
     <div class="container mt-4">
     <h1>Registered sales</h1>
     <ul class="list-group list-group-flush mt-4">
-    {% for sale in sales_list%}
+    {% for sale in object_list%}
         <li class="list-group-item d-flex align-items-center">
             {{ sale.date_sale}} 
             <a href="{% url 'signup:sale_update' sale.id %}"> {% csrf_token %}
@@ -16,14 +16,15 @@
             <a href="{% url 'signup:sale_delete' sale.id %}"> {% csrf_token %}
                 <input class="btn btn-danger ml-1" type="submit" value='Delete'>
             </a>
-          
         </li>
-       
-        
-          
     {% endfor %}
-    </ul>
-    <a class="btn btn-secondary float-right mt-2" href="{% url 'signup:sales'%}" role="button">Come back</a>
+    
+    </ul> 
+    {% comment %} {% for sale in object_list %}
+      <p>{{sale.date_sale}}</p>
+    {% endfor %} {% endcomment %}
+
+    <a class="btn btn-secondary float-right mt-2" href="{% url 'signup:add_sale'%}" role="button">Come back</a>
    </div>
     {% endblock %}
 

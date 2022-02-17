@@ -1,5 +1,4 @@
 h1,
-p,
 h2 {
     color: #95C0C9 !important;
 }
@@ -18,6 +17,14 @@ h2 {
     border-radius: 5px;
     background: #95C0C9;
     height: 100px;
+    width: 200px;
+    text-align: center;
+    color: #ffff;
+    cursor: pointer;
+}
+
+.back-dash {
+    background: pink;
 }
 
 .login-form {

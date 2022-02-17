@@ -1,7 +1,7 @@
+from dataclasses import field
 from django import forms
+from django.forms import modelformset_factory
 from .models import *
-
-
 
 
 class UsuarioForm(forms.ModelForm):
@@ -18,11 +18,14 @@ class ProductForm(forms.ModelForm):
 
 class SalesForm(forms.ModelForm):
     class Meta:
-        model = Sales
+        model = Sale
         fields = ["date_sale", "person", "total"]
 
-class ItemSaleForm(forms.ModelForm):
-    class Meta:
-        model = SaleItem
-        fields = ["product", "quantity", "value_product"]
+# class ItemSaleForm(forms.ModelForm):
+#     class Meta:
+#         model = SaleItem
+#         fields = ["product", "sale", "quantity", "value_product"]
 
+
+ItemFormSet = modelformset_factory(SaleItem, fields=(
+    "product", "sale", "quantity", "value_product"), extra=1)
