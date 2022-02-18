@@ -10,7 +10,7 @@ from django.template import loader
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from .models import Person, SaleItem, Sale, Product
-from django.forms import formset_factory
+from django.forms import modelformset_factory
 from django.views.generic import ListView, TemplateView
 from django.urls import reverse_lazy
 
@@ -133,7 +133,7 @@ class AddSale(TemplateView):
                     instance = itemFormSet.save(commit=False)
                     instance.sale = sale
                     instance.save()
-                    return redirect('signup:sales_list')
+                return redirect('signup:sales_list')
         return self.render_to_response({'formset': formset, 'form': form})
 
 
@@ -150,16 +150,18 @@ def sale_delete(request, id):
 
 def sale_update(request, id):
     sale = get_object_or_404(Sale, pk=id)
-  
     form = SalesForm(instance=sale)
-   
+    formset = ItemFormSet()
+
     if(request.method == 'POST'):
         form = SalesForm(request.POST, instance=sale)
-     
-        if (form.is_valid()):
+        formset = ItemFormSet(request.POST, request.FILES, )
+
+        if (form.is_valid() and formset.is_valid()):
             form.save()
+            formset.save()
             return redirect('signup:sales_list')
         else:
-            return render(request, 'signup/edit_sale.html', {'form': form, 'sale': sale})
+            return render(request, 'signup/edit_sale.html', {'form': form, 'formset': formset, 'sale': sale})
     elif(request.method == 'GET'):
-        return render(request, 'signup/edit_sale.html', {'form': form,  'sale': sale})
+        return render(request, 'signup/edit_sale.html', {'form': form, 'formset': formset, 'sale': sale})

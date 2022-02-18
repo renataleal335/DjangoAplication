@@ -11,7 +11,10 @@ h2 {
     color: #95C0C9;
 }
 
-.home-dashboard {}
+.formset-block {
+    display: flex;
+    flex-direction: column;
+}
 
 .card-dash {
     border-radius: 5px;
